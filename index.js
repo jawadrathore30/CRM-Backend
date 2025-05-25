@@ -24,7 +24,17 @@ const __dirname = path.resolve();
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
+app.use(
+	cors({
+	  origin: [
+		"http://localhost:3000", // for local dev
+		"https://crm-frontend-zylg.onrender.com" // replace with your actual frontend domain
+	  ],
+	  credentials: true,
+	})
+  );
+  
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
