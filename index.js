@@ -27,12 +27,15 @@ mongoose.connect(process.env.MONGO, {
 const __dirname = path.resolve();
 
 const app = express();
+const allowedOrigins = [
+  "http://localhost:3000",
+];
 
 app.use(express.json());
 // app.use(cors());
 app.use(
 	cors({
-	  origin:"*",
+	  origin:allowedOrigins,
 	  
 	  credentials: true,
 	})
