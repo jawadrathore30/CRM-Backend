@@ -10,8 +10,13 @@ import cookieParser from "cookie-parser";
 
 dotenv.config();
 
-mongoose
-	.connect(process.env.MONGO)
+mongoose.connect(process.env.MONGO, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+	serverSelectionTimeoutMS: 30000, // Wait up to 30 seconds to connect
+	socketTimeoutMS: 45000,          // Close socket after 45s of inactivity
+  })
+  
 	.then(() => {
 		console.log("MongoDB is connected");
 	})
@@ -27,10 +32,8 @@ app.use(express.json());
 // app.use(cors());
 app.use(
 	cors({
-	  origin: [
-		"http://localhost:3000", // for local dev
-		"https://crm-frontend-zylg.onrender.com" // replace with your actual frontend domain
-	  ],
+	  origin:"*",
+	  
 	  credentials: true,
 	})
   );
