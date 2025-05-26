@@ -29,13 +29,14 @@ const __dirname = path.resolve();
 const app = express();
 const allowedOrigins = [
   "http://localhost:3000",
+  "https://crm-frontend-3hf2.vercel.app"
 ];
 
 app.use(express.json());
 // app.use(cors());
 app.use(
 	cors({
-	  origin:allowedOrigins,
+	  origin:"*",
 	  
 	  credentials: true,
 	})
